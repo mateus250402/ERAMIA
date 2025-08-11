@@ -67,21 +67,21 @@ with col1:
 
     if not elbow:
         qtd_cluster = st.number_input(
-            "Número de Clusters (K-Means):",
+            "Número de Clusters:",
             min_value=1,
             value=1,
         step=1,
     )
         
     min_casos_cluster = st.number_input(
-        "Número Mínimo de Casos por Cluster (K-Means):",
+        "Número Mínimo de Casos por Cluster:",
         min_value=1,
         value=1,
         step=1,
     )
 
     min_casos_nuns = st.number_input(
-        "Número Mínimo de Nuns (K-Means):",
+        "Número Mínimo de Nuns:",
         min_value=1,
         value=1,
         step=1,
@@ -130,7 +130,7 @@ with col2:
         )
     
         hemoglobina = st.number_input(
-            "🩸 Nível de Hemoglobina (g/dL):",
+            "🩸 Hemoglobina (g/dL):",
             min_value=0.0,
             max_value=20.0,
             value=13.5,
@@ -138,7 +138,7 @@ with col2:
         )
         
         albumina = st.number_input(
-            "🧪 Nível de Albumina (g/dL):",
+            "🧪 Albumina (g/dL):",
             min_value=0.0,
             max_value=10.0,
             value=4.0,
