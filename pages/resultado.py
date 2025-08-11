@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.set_page_config(page_title="Resultado")
+
 st.markdown("""
 <style>
     .stButton > button {
@@ -74,7 +76,7 @@ col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
 with col_btn2:
     if st.button("Inserir dados", use_container_width=True):     
-        st.switch_page("../app.py")
+        st.switch_page("Home")
 
 
 # Footer
