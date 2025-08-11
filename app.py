@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+st.write("Arquivos em pages:", os.listdir("pages"))
 
 st.set_page_config(page_title="Home")
 # Configuração da página
