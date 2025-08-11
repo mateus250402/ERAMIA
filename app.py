@@ -53,7 +53,8 @@ st.link_button("🔗 Acessar Dataset CKD", "https://archive.ics.uci.edu/dataset/
 col1, spacer, col2 = st.columns([1, 0.2, 2])
 
 with col1:
-    st.markdown("### 🤖 Modelo de IA")
+    st.markdown("<h3 style='text-align: center;'>🤖 Modelo de IA</h3>", unsafe_allow_html=True)
+    
     opcoes_modelo = st.selectbox(
         "Selecione o modelo de análise:",
         ["SHAP"]
@@ -99,9 +100,8 @@ with spacer:
     st.write("")
 
 with col2:
-    # Seção de entrada de dados do paciente
-    st.markdown("### 👤 Dados do Paciente")
-    
+    st.markdown("<h3 style='text-align: center;'>👤 Dados do Paciente</h3>", unsafe_allow_html=True)
+
     # Dados pessoais
     col2a, spacer2, col2b = st.columns([1, 0.1, 1])
         
