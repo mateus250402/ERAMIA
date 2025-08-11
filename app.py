@@ -103,7 +103,7 @@ with col2:
     st.markdown("<h3 style='text-align: center;'>👤 Dados do Paciente</h3>", unsafe_allow_html=True)
 
     # Dados pessoais
-    col2a, spacer2, col2b = st.columns([1, 0.1, 1])
+    col2a, spacer2, col2b = st.columns([1, 0.05, 1])
         
     
     with col2a:
