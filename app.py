@@ -1,5 +1,4 @@
 import streamlit as st
-from datetime import datetime
 
 # Configuração da página
 st.set_page_config(
@@ -215,12 +214,8 @@ st.markdown("---")
 col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
 with col_btn2:
-    if st.button("🔍 Realizar Análise", use_container_width=True):
-        # Armazenar dados na sessão para usar na próxima página
-        
-        
-        # Redirecionar para página de análise
-        st.switch_page("pages/analise.py")
+    if st.button("🔍 Realizar Análise", use_container_width=True):     
+        st.switch_page("pages/resultado.py")
 
 # Footer
 st.markdown("---")
