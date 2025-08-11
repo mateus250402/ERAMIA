@@ -208,9 +208,8 @@ with col2:
             index=0,
         )
         sexo = 1 if sexo_opcao == "Masculino" else 2
-            
-st.markdown("---")
-# Botão de análise que redireciona para outra página
+
+st.markdown("")
 col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
 with col_btn2:

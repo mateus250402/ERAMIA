@@ -1,5 +1,18 @@
 import streamlit as st
 
+st.markdown("""
+<style>
+    .stButton > button {
+        background: linear-gradient(90deg, #2E86AB, #5DADE2);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+    }
+</style
+""", unsafe_allow_html=True)
+
 # Título da página
 st.markdown("""
 <div style="background: linear-gradient(90deg, #2E86AB 0%, #5DADE2 100%); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
@@ -11,7 +24,7 @@ st.markdown("""
 col1, spacer, col2 = st.columns([1, 0.2, 2])
 
 with col1:
-    st.markdown("<h3 style='text-align: center;'>📋 Seleções</h3>", unsafe_allow_html=True)
+    st.markdown("<h3>Filtros</h3>", unsafe_allow_html=True)
     
     st.markdown("""
     <details>
@@ -44,14 +57,25 @@ with spacer:
     st.write("") 
     
 with col2:
-    st.markdown("<h3 style='text-align: center;'>👤 Informações</h3>", unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        Aqui estão os detalhes do paciente. Adicione mais informações ou elementos conforme necessário.
-    </div>
-    """, unsafe_allow_html=True)
-
+    col2a, spacer2, col2b = st.columns([1, 0.1, 1])
+    
+    with col2a:
+        st.markdown("<h3 style='text-align: center;'>Contrafactuais</h3>", unsafe_allow_html=True)
+        
+    with spacer2:
+        st.markdown("")
+        
+    with col2b:
+        st.markdown("<h3 style='text-align: center;'>Métricas</h3>", unsafe_allow_html=True)
+    
 st.markdown("---")
+
+col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+
+with col_btn2:
+    if st.button("Inserir dados", use_container_width=True):     
+        st.switch_page("app.py")
+
 
 # Footer
 st.markdown("""
