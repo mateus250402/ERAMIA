@@ -18,7 +18,7 @@ st.markdown("""
 # Título da página
 st.markdown("""
 <div style="background: linear-gradient(90deg, #2E86AB 0%, #5DADE2 100%); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
-    <h1 style="color: white; text-align: center; margin: 0;">🏥 Detalhes do Paciente</h1>
+    <h1 style="color: white; text-align: center; margin: 0;">🏥 Resultado da análise</h1>
 </div>
 """, unsafe_allow_html=True)
 
