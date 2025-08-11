@@ -215,7 +215,7 @@ col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
 with col_btn2:
     if st.button("🔍 Realizar Análise", use_container_width=True):     
-        st.switch_page("resultado")
+        st.switch_page("pages/resultado.py")
 
 # Footer
 st.markdown("---")
