@@ -1,5 +1,6 @@
 import streamlit as st
 
+st.set_page_config(page_title="Home")
 # Configuração da página
 st.set_page_config(
     page_title="Sistema Médico - CKD",
@@ -214,7 +215,7 @@ col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
 with col_btn2:
     if st.button("🔍 Realizar Análise", use_container_width=True):     
-        st.switch_page("Resultado")
+        st.switch_page("resultado")
 
 # Footer
 st.markdown("---")
