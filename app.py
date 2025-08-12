@@ -1,59 +1,11 @@
 import streamlit as st
+import utils.visual as visual
 
-st.set_page_config(page_title="Home")
-# Configuração da página
-st.set_page_config(
-    page_title="Sistema Médico - CKD",
-    page_icon="🏥",
-    layout="wide"
-)
+def show_dataset_link():
+    st.link_button("🔗 Acessar Dataset CKD", "https://archive.ics.uci.edu/dataset/336/chronic+kidney+disease")
 
-# Header principal
-st.markdown("""
-<div style="background: linear-gradient(90deg, #2E86AB 0%, #5DADE2 100%); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
-    <h1 style="color: white; text-align: center; margin: 0;">🏥 Sistema de Análise Médica</h1>
-    <p style="color: white; text-align: center; margin: 0; opacity: 0.9;">Diagnóstico de Doença Renal Crônica (CKD)</p>
-</div>
-""", unsafe_allow_html=True)
-
-# CSS customizado para estilo hospitalar
-st.markdown("""
-<style>
-    .metric-card {
-        background: white;
-        padding: 1rem;
-        border-radius: 10px;
-        border-left: 4px solid #2E86AB;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin: 0.5rem 0;
-    }
-    
-    .info-box {
-        background: #E8F4F8;
-        padding: 1rem;
-        border-radius: 8px;
-        border: 1px solid #2E86AB;
-        margin: 1rem 0;
-    }
-    
-    .stButton > button {
-        background: linear-gradient(90deg, #2E86AB, #5DADE2);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 0.5rem 1rem;
-        font-weight: bold;
-    }
-</style>
-""", unsafe_allow_html=True)
-    
-st.link_button("🔗 Acessar Dataset CKD", "https://archive.ics.uci.edu/dataset/336/chronic+kidney+disease")
-
-# Layout em colunas
-col1, spacer, col2 = st.columns([1, 0.2, 2])
-
-with col1:
-    st.markdown("<h3 style='text-align: center;'>🤖 Modelo de IA</h3>", unsafe_allow_html=True)
+def show_modelo_ia():
+    visual.section_title("Modelo de IA", emoji="🤖")
     
     opcoes_modelo = st.selectbox(
         "Selecione o modelo de análise:",
@@ -64,14 +16,13 @@ with col1:
         "Elbow Method decide número de clusters?",
         value=False,
     )
-
     if not elbow:
         qtd_cluster = st.number_input(
             "Número de Clusters:",
             min_value=1,
             value=1,
-        step=1,
-    )
+            step=1,
+        )
         
     min_casos_cluster = st.number_input(
         "Número Mínimo de Casos por Cluster:",
@@ -79,14 +30,14 @@ with col1:
         value=1,
         step=1,
     )
-
+    
     min_casos_nuns = st.number_input(
         "Número Mínimo de Nuns:",
         min_value=1,
         value=1,
         step=1,
     )
-
+    
     treshold = st.number_input(
         "Treshold de recuperação de KNN:",
         min_value=0.0,
@@ -94,19 +45,13 @@ with col1:
         value=0.5,
         step=0.01,
     )
-    
-with spacer:
-    # Espaço vazio para separação visual
-    st.write("")
 
-with col2:
-    st.markdown("<h3 style='text-align: center;'>👤 Dados do Paciente</h3>", unsafe_allow_html=True)
-
-    # Dados pessoais
-    col2a, spacer2, col2b = st.columns([1, 0.05, 1])
-        
+def show_dados_paciente():
+    visual.section_title("Dados do Paciente", emoji="👤")
     
-    with col2a:
+    col1, spacer, col2 = st.columns([1, 0.05, 1])
+    
+    with col1:
         idade = st.number_input(
             "🎂 Idade:",
             min_value=0,
@@ -128,7 +73,7 @@ with col2:
             value=22.5,
             step=0.1,
         )
-    
+        
         hemoglobina = st.number_input(
             "🩸 Hemoglobina (g/dL):",
             min_value=0.0,
@@ -153,11 +98,10 @@ with col2:
             step=1.0,
         )
     
-    with spacer2:
-        # Espaço vazio para separação visual
+    with spacer:
         st.write("")
-    
-    with col2b:
+        
+    with col2:
         proteinura = st.checkbox(
             "💧 Proteinúria Presente",
             value=False,
@@ -210,17 +154,34 @@ with col2:
         )
         sexo = 1 if sexo_opcao == "Masculino" else 2
 
-st.markdown("")
-col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+def show_analisar_button():
+    st.markdown("")
+    col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+    with col_btn2:
+        if st.button("🔍 Realizar Análise", use_container_width=True):     
+            st.switch_page("pages/resultado.py")
 
-with col_btn2:
-    if st.button("🔍 Realizar Análise", use_container_width=True):     
-        st.switch_page("pages/resultado.py")
+def main():
+    visual.inject_css()
+    visual.set_config(title="Sistema Médico - CKD")
 
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style="text-align: center; color: #1B4F72; padding: 1rem;">
-    <small>🏥 Sistema desenvolvido para auxílio ao diagnóstico médico • Versão 1.0</small>
-</div>
-""", unsafe_allow_html=True)
+    visual.show_title(title="Sistema Médico - CKD")
+    
+    show_dataset_link()
+    
+    col1, spacer, col2 = st.columns([1, 0.2, 2])
+    with col1:
+        show_modelo_ia()
+    with spacer:
+        st.write("")
+    with col2:
+        show_dados_paciente()
+        
+    show_analisar_button()
+    
+    st.markdown("---")
+    
+    visual.show_footer()
+
+if __name__ == "__main__":
+    main()
