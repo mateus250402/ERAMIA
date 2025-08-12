@@ -22,6 +22,21 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+progrediu = False  # Altere para False para testar o outro caso
+if progrediu:
+    indicador = "<span style='font-size:2rem; color:#27ae60;'>✅</span>"
+    texto = "<span style='color:#27ae60; font-weight:bold;'>Houve progressão da doença</span>"
+else:
+    indicador = "<span style='font-size:2rem; color:#c0392b;'>❌</span>"
+    texto = "<span style='color:#c0392b; font-weight:bold;'>Não houve progressão da doença</span>"
+
+st.markdown(f"""
+<div style="text-align: center; margin-bottom: 1.5rem;">
+    {indicador}
+    <span style="font-size:1.3rem;">{texto}</span>
+</div>
+""", unsafe_allow_html=True)
+
 # Layout em colunas
 col1, spacer, col2 = st.columns([1, 0.2, 2])
 
