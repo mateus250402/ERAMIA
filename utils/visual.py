@@ -69,6 +69,8 @@ def inject_css():
             color: #1B4F72;
             padding: 1rem;
         }
+        
+        /* Estilo original da tabela para desktop */
         #metrics-table {
             width: 100% !important;
             border-collapse: collapse !important;
@@ -92,6 +94,45 @@ def inject_css():
             color: #2c3e50 !important;
             border: 1px solid #ddd !important;
             background-color: #f8f9fa !important;
+        }
+        
+        /* Container para scroll horizontal apenas no celular */
+        .table-container {
+            width: 100% !important;
+            margin: 0.5rem 0 !important;
+        }
+        
+        /* Ajustes APENAS para celular */
+        @media (max-width: 768px) {
+            .table-container {
+                overflow-x: auto !important;
+            }
+            
+            #metrics-table th {
+                padding: 6px 3px !important;
+                font-size: 0.75rem !important;
+                min-width: 70px !important;
+            }
+            
+            #metrics-table td {
+                padding: 5px 3px !important;
+                font-size: 0.7rem !important;
+                min-width: 70px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #metrics-table th {
+                padding: 4px 2px !important;
+                font-size: 0.65rem !important;
+                min-width: 60px !important;
+            }
+            
+            #metrics-table td {
+                padding: 3px 2px !important;
+                font-size: 0.6rem !important;
+                min-width: 60px !important;
+            }
         }
     </style>
     """, unsafe_allow_html=True)

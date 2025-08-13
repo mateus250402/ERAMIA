@@ -43,11 +43,11 @@ def show_filters():
 def show_contrafactuais_metricas():
     # Dados dos contrafactuais
     contrafactuais = [
-        """Em um cenário que: **TFGe** -> 21.04, **Pressão_Arterial_Sistólica** -> 152.78, **IMC** -> 24.92, **Albumina** -> 4.16, **Diabetes** ausente, **Bloqueador_Canal_Cálcio** presente, **Diuréticos** ausente, **Histórico_DCV** ausente, **Hipertensão** presente, **Inibidor_SRA** presente. Semelhança com **Cluster 2**, que possui: **Hipertensão presente**, **Histórico_DCV ausente**.""",
+        "Em um cenário que: **TFGe** -> 21.04, **Pressão_Arterial_Sistólica** -> 152.78, **IMC** -> 24.92, **Albumina** -> 4.16, **Diabetes** ausente, **Bloqueador_Canal_Cálcio** presente, **Diuréticos** ausente, **Histórico_DCV** ausente, **Hipertensão** presente, **Inibidor_SRA** presente. Detectada semelhança com **Cluster 2**, que possui: **Hipertensão presente**, **Histórico_DCV ausente**.",
 
-        "Em um cenário que: **TFGe** -> 38.08. Semelhança com **Cluster 1**, que possui: **Diabetes ausente**, **Hipertensão presente**, **Histórico_DCV ausente**",
+        "Em um cenário que: **TFGe** -> 38.08. Detectada semelhança com **Cluster 1**, que possui: **Diabetes ausente**, **Hipertensão presente**, **Histórico_DCV ausente**",
 
-        "Em um cenário que: **TFGe** -> 25.41, **Pressão_Arterial_Sistólica** -> 139.47, **IMC** -> 34.36, **Hemoglobina** -> 12.56, **Albumina** -> 4.29, **Diabetes** -> 0, **Diuréticos** -> 1. Semelhança com **Cluster 3**, que possui: **Diabetes ausente**, **Hipertensão presente**, **Histórico_DCV ausente**"
+        "Em um cenário que: **TFGe** -> 25.41, **Pressão_Arterial_Sistólica** -> 139.47, **IMC** -> 34.36, **Hemoglobina** -> 12.56, **Albumina** -> 4.29, **Diabetes** -> 0, **Diuréticos** -> 1. Detectada semelhança com **Cluster 3**, que possui: **Diabetes ausente**, **Hipertensão presente**, **Histórico_DCV ausente**"
     ]
     
     # Métricas correspondentes
@@ -72,7 +72,7 @@ def show_contrafactuais_metricas():
 
         # Converte DataFrame em tabela HTML
         html_table = df_metricas.to_html(index=False, escape=False, table_id="metrics-table")
-        st.markdown(html_table, unsafe_allow_html=True)
+        st.markdown(f'<div class="table-container">{html_table}</div>', unsafe_allow_html=True)
         
         st.markdown("---")  # Separador entre contrafactuais
         
