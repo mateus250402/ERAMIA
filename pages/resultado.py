@@ -39,24 +39,43 @@ def show_filters():
     </details>
     """, unsafe_allow_html=True)
 
-def show_contrafactuais():
-    st.markdown("<h3 style='text-align: center;'>Contrafactuais</h3>", unsafe_allow_html=True)
-
-def show_metrics():
-    st.markdown("<h3 style='text-align: center;'>Métricas</h3>", unsafe_allow_html=True)
-
 def show_contrafactuais_metricas():
-    col1, spacer, col2 = st.columns([1, 0.1, 1])
+    # Dados dos contrafactuais
+    contrafactuais = [
+        "Em um cenário hipotético onde houvesse as mudanças de Idade para 73, e TFGe para 21.04, e Pressão_Arterial_Sistólica para 152.78, e IMC para 24.92, e Albumina para 4.16, e Diabetes para 0, e Bloqueador_Canal_Cálcio para 1, e Sexo para 1, e Diuréticos para 0, e Histórico_DCV para 0, e Hipertensão para 1, e Inibidor_SRA para 1, as características clínicas desse caso se assemelhariam com as do Cluster 2, que tem as seguintes características gerais: Hipertensão presente, Histórico_DCV ausente",
+        "Em um cenário hipotético onde houvesse as mudanças de Idade para 45, e TFGe para 38.08, as características clínicas desse caso se assemelhariam com as do Cluster 1, que tem as seguintes características gerais: Diabetes ausente, Hipertensão presente, Histórico_DCV ausente",
+        "Em um cenário hipotético onde houvesse as mudanças de Idade para 68, e TFGe para 25.41, e Pressão_Arterial_Sistólica para 139.47, e IMC para 34.36, e Hemoglobina para 12.56, e Albumina para 4.29, e Diabetes para 0, e Diuréticos para 1, as características clínicas desse caso se assemelhariam com as do Cluster 3, que tem as seguintes características gerais: Diabetes ausente, Hipertensão presente, Histórico_DCV ausente"
+    ]
     
-    with col1:
-        show_contrafactuais()
+    # Métricas correspondentes
+    metricas = [
+        [0.738, 0.972, 5, 0.727, 0.75, 0],
+        [0.87, 0.972, 2, 0.752, 0.5, 1],
+        [0.642, 0.972, 7, 0.717, 0.875, 1]
+    ]
+    
+    nomes_metricas = ["Similarity", "Quality", "Sparsity", "Smoothness", "Plausibility", "Validation"]
 
-    with spacer:
-        st.markdown("")
+    # Cabeçalho principal
+    st.markdown("<h3 style='text-align: center; margin-bottom: 1rem;'>Contrafactuais & Métricas</h3>", unsafe_allow_html=True)
+    
+    # Para cada contrafactual e suas métricas
+    for i, (contra, metrica) in enumerate(zip(contrafactuais, metricas)):
+        st.markdown(f"**Contrafactual {i+1}:**")
+        st.markdown(contra)
         
-    with col2:
-        show_metrics()
-
+        # Cabeçalho das métricas
+        cols = st.columns(len(nomes_metricas))
+        for j, nome in enumerate(nomes_metricas):
+            cols[j].markdown(f"**{nome}**")
+        
+        # Valores das métricas
+        cols = st.columns(len(nomes_metricas))
+        for j, valor in enumerate(metrica):
+            cols[j].markdown(str(valor))
+        
+        st.markdown("---")  # Separador entre contrafactuais
+        
 def show_insert_button():
     col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
     with col_btn2:
@@ -69,17 +88,16 @@ def main():
     
     visual.show_title(title="Resultado da Análise")
     
-    progrediu = False  
+    progrediu = True  
     show_result(progrediu)
     
-    col1, spacer, col2 = st.columns([1, 0.2, 2])
+    col1, spacer, col2 = st.columns([1, 0.05, 2])
     with col1:
         show_filters()
     with spacer:
         st.write("") 
     with col2:
         show_contrafactuais_metricas()
-    st.markdown("---")
     
     show_insert_button()
     

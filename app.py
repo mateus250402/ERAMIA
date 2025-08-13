@@ -14,7 +14,7 @@ def show_modelo_ia():
     
     elbow = st.checkbox(
         "Elbow Method decide número de clusters?",
-        value=False,
+        value=True,
     )
     if not elbow:
         qtd_cluster = st.number_input(
@@ -27,22 +27,22 @@ def show_modelo_ia():
     min_casos_cluster = st.number_input(
         "Número Mínimo de Casos por Cluster:",
         min_value=1,
-        value=1,
+        value=3,
         step=1,
     )
     
     min_casos_nuns = st.number_input(
         "Número Mínimo de Nuns:",
         min_value=1,
-        value=1,
+        value=15,
         step=1,
     )
     
     treshold = st.number_input(
-        "Treshold de recuperação de KNN:",
-        min_value=0.0,
-        max_value=1.0,
-        value=0.5,
+        "Treshold (Limite de similaridade)",
+        min_value=0.00,
+        max_value=1.00,
+        value=0.70,
         step=0.01,
     )
 
@@ -56,21 +56,21 @@ def show_dados_paciente():
             "🎂 Idade:",
             min_value=0,
             max_value=120,
-            value=45,
+            value=24,
         )
         
         pressao_arterial_sistolica = st.number_input(
             "🩺 Pressão Arterial Sistólica (mmHg):",
             min_value=50,
             max_value=250,
-            value=120,
+            value=234,
         )
         
         imc = st.number_input(
             "⚖️ IMC (Índice de Massa Corporal):",
             min_value=10.0,
             max_value=60.0,
-            value=22.5,
+            value=34.3,
             step=0.1,
         )
         
@@ -78,7 +78,7 @@ def show_dados_paciente():
             "🩸 Hemoglobina (g/dL):",
             min_value=0.0,
             max_value=20.0,
-            value=13.5,
+            value=11.4,
             step=0.1,
         )
         
@@ -86,7 +86,7 @@ def show_dados_paciente():
             "🧪 Albumina (g/dL):",
             min_value=0.0,
             max_value=10.0,
-            value=4.0,
+            value=4.1,
             step=0.1,
         )
         
@@ -94,7 +94,7 @@ def show_dados_paciente():
             "🧬 TFGe (Taxa de Filtração Glomerular Estimada):",
             min_value=0.0,
             max_value=200.0,
-            value=90.0,
+            value=15.03,
             step=1.0,
         )
     
@@ -104,7 +104,7 @@ def show_dados_paciente():
     with col2:
         proteinura = st.checkbox(
             "💧 Proteinúria Presente",
-            value=False,
+            value=True,
         )
         
         sangue_oculto = st.checkbox(
@@ -114,7 +114,7 @@ def show_dados_paciente():
         
         hipertensao = st.checkbox(
             "🩺 Hipertensão Presente",
-            value=False,
+            value=True,
         )
         
         historico_dcv = st.checkbox(
@@ -129,12 +129,12 @@ def show_dados_paciente():
         
         inibidor_sraa = st.checkbox(
             "💊 Uso de Inibidores do Sistema Renina-Angiotensina-Aldosterona (SRAA)",
-            value=False,
+            value=True,
         )
         
         bloquador_calcio = st.checkbox(
             "💊 Uso de Bloqueadores de Cálcio",
-            value=False,
+            value=True,
         )
         
         diuretico = st.checkbox(
@@ -144,7 +144,7 @@ def show_dados_paciente():
         
         progressao_drc = st.checkbox(
             "📈 Progressão da Doença Renal Crônica",
-            value=False,
+            value=True,
         ) 
         
         sexo_opcao = st.radio(
