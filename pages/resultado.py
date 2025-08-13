@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import utils.visual as visual
 
 def show_result(progrediu: bool):
@@ -42,9 +43,11 @@ def show_filters():
 def show_contrafactuais_metricas():
     # Dados dos contrafactuais
     contrafactuais = [
-        "Em um cenário hipotético onde houvesse as mudanças de Idade para 73, e TFGe para 21.04, e Pressão_Arterial_Sistólica para 152.78, e IMC para 24.92, e Albumina para 4.16, e Diabetes para 0, e Bloqueador_Canal_Cálcio para 1, e Sexo para 1, e Diuréticos para 0, e Histórico_DCV para 0, e Hipertensão para 1, e Inibidor_SRA para 1, as características clínicas desse caso se assemelhariam com as do Cluster 2, que tem as seguintes características gerais: Hipertensão presente, Histórico_DCV ausente",
-        "Em um cenário hipotético onde houvesse as mudanças de Idade para 45, e TFGe para 38.08, as características clínicas desse caso se assemelhariam com as do Cluster 1, que tem as seguintes características gerais: Diabetes ausente, Hipertensão presente, Histórico_DCV ausente",
-        "Em um cenário hipotético onde houvesse as mudanças de Idade para 68, e TFGe para 25.41, e Pressão_Arterial_Sistólica para 139.47, e IMC para 34.36, e Hemoglobina para 12.56, e Albumina para 4.29, e Diabetes para 0, e Diuréticos para 1, as características clínicas desse caso se assemelhariam com as do Cluster 3, que tem as seguintes características gerais: Diabetes ausente, Hipertensão presente, Histórico_DCV ausente"
+        """Em um cenário que: **TFGe** -> 21.04, **Pressão_Arterial_Sistólica** -> 152.78, **IMC** -> 24.92, **Albumina** -> 4.16, **Diabetes** ausente, **Bloqueador_Canal_Cálcio** presente, **Diuréticos** ausente, **Histórico_DCV** ausente, **Hipertensão** presente, **Inibidor_SRA** presente. Semelhança com **Cluster 2**, que possui: **Hipertensão presente**, **Histórico_DCV ausente**.""",
+
+        "Em um cenário que: **TFGe** -> 38.08. Semelhança com **Cluster 1**, que possui: **Diabetes ausente**, **Hipertensão presente**, **Histórico_DCV ausente**",
+
+        "Em um cenário que: **TFGe** -> 25.41, **Pressão_Arterial_Sistólica** -> 139.47, **IMC** -> 34.36, **Hemoglobina** -> 12.56, **Albumina** -> 4.29, **Diabetes** -> 0, **Diuréticos** -> 1. Semelhança com **Cluster 3**, que possui: **Diabetes ausente**, **Hipertensão presente**, **Histórico_DCV ausente**"
     ]
     
     # Métricas correspondentes
@@ -64,15 +67,12 @@ def show_contrafactuais_metricas():
         st.markdown(f"**Contrafactual {i+1}:**")
         st.markdown(contra)
         
-        # Cabeçalho das métricas
-        cols = st.columns(len(nomes_metricas))
-        for j, nome in enumerate(nomes_metricas):
-            cols[j].markdown(f"**{nome}**")
-        
-        # Valores das métricas
-        cols = st.columns(len(nomes_metricas))
-        for j, valor in enumerate(metrica):
-            cols[j].markdown(str(valor))
+        # Criar DataFrame para as métricas
+        df_metricas = pd.DataFrame([metrica], columns=nomes_metricas)
+
+        # Converte DataFrame em tabela HTML
+        html_table = df_metricas.to_html(index=False, escape=False, table_id="metrics-table")
+        st.markdown(html_table, unsafe_allow_html=True)
         
         st.markdown("---")  # Separador entre contrafactuais
         

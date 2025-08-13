@@ -69,6 +69,30 @@ def inject_css():
             color: #1B4F72;
             padding: 1rem;
         }
+        #metrics-table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            margin: 0.5rem 0 !important;
+            font-family: 'Source Sans Pro', sans-serif !important;
+        }
+        
+        #metrics-table th {
+            background-color: #2E86AB !important;
+            color: white !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            padding: 10px !important;
+            border: 1px solid #ddd !important;
+        }
+        
+        #metrics-table td {
+            text-align: center !important;
+            padding: 8px !important;
+            font-weight: 600 !important;
+            color: #2c3e50 !important;
+            border: 1px solid #ddd !important;
+            background-color: #f8f9fa !important;
+        }
     </style>
     """, unsafe_allow_html=True)
 
